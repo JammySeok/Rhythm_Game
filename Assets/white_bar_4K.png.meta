@@ -1,0 +1,466 @@
+fileFormatVersion: 2
+guid: 07b85edfd9d461e448db5418c599b7e8
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: 0
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: white_bar_4K_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 833
+        width: 257
+        height: 138
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e2250d2dd4bcd246b3cfd4b956f442e
+      internalID: -2055769676
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: white_bar_4K_1
+      rect:
+        serializedVersion: 2
+        x: 302
+        y: 961
+        width: 56
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 636f4bc0a555c284face600cb8cb5e20
+      internalID: 1767521524
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: white_bar_4K_2
+      rect:
+        serializedVersion: 2
+        x: 924
+        y: 371
+        width: 31
+        height: 600
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a813973775caaca4091c8526efa408ed
+      internalID: -1274518221
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: white_bar_4K_4
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 195
+        width: 543
+        height: 88
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ccabd9ceb831ebe4fafa73b0c518a6e5
+      internalID: -833919576
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: white_bar_4K_5
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 784
+        width: 56
+        height: 47
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e51697086d35d3347acd65a5d5b439b0
+      internalID: 89299670
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: white_bar_4K_6
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 961
+        width: 56
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aba11ea9071036642b3db1b78e473b0d
+      internalID: 1461587296
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: white_bar_4K_7
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 427
+        width: 128
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 796a8e6514e36504aa033ba32e334a40
+      internalID: 257983434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: white_bar_4K_8
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 427
+        width: 128
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05537c3c1948b0d4ca22e22f990d6c0b
+      internalID: -1438434252
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: white_bar_4K_9
+      rect:
+        serializedVersion: 2
+        x: 259
+        y: 427
+        width: 128
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6fde19e09b0639c4abefcab3f2018fc0
+      internalID: 397283074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: white_bar_4K_10
+      rect:
+        serializedVersion: 2
+        x: 388
+        y: 427
+        width: 128
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06b478326ddd3c546a0d7d2f677599e9
+      internalID: -1238602418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: white_bar_4K_11
+      rect:
+        serializedVersion: 2
+        x: 517
+        y: 427
+        width: 128
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e7b8707ccffb31489a940db708c23fd
+      internalID: 476935271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: white_bar_4K_12
+      rect:
+        serializedVersion: 2
+        x: 680
+        y: 1
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df4f8883fec72064185cfb27a31534cb
+      internalID: 991549961
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: white_bar_4K_13
+      rect:
+        serializedVersion: 2
+        x: 737
+        y: 570
+        width: 54
+        height: 400
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e305b214683115b44a96e225ce1bda53
+      internalID: -1590600872
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: white_bar_4K_14
+      rect:
+        serializedVersion: 2
+        x: 792
+        y: 570
+        width: 54
+        height: 400
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3798bb50d6e84ad43a8ed6e531230e2e
+      internalID: -2070972018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: white_bar_4K_15
+      rect:
+        serializedVersion: 2
+        x: 418
+        y: 961
+        width: 230
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0daa20da6dd05ab409ef14fbb94ef16a
+      internalID: -943913699
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline:
+    - - {x: -187, y: 475.5}
+      - {x: -187, y: 484.5}
+      - {x: -131, y: 484.5}
+      - {x: -131, y: 475.5}
+    - - {x: -490, y: 485.5}
+      - {x: -234, y: 485.5}
+      - {x: -233, y: 346.5}
+      - {x: -489, y: 346.5}
+    - - {x: -130, y: 475.5}
+      - {x: -130, y: 484.5}
+      - {x: -74, y: 484.5}
+      - {x: -74, y: 475.5}
+    - - {x: -489, y: 298.5}
+      - {x: -489, y: 345.5}
+      - {x: -433, y: 345.5}
+      - {x: -433, y: 298.5}
+    - - {x: 434, y: -115.5}
+      - {x: 434, y: 484.5}
+      - {x: 465, y: 484.5}
+      - {x: 465, y: -115.5}
+    - - {x: 398, y: -45.5}
+      - {x: 398, y: 484.5}
+      - {x: 409, y: 484.5}
+      - {x: 409, y: -45.5}
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 1537655665
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      white_bar_4K_0: -2055769676
+      white_bar_4K_1: 1767521524
+      white_bar_4K_10: -1238602418
+      white_bar_4K_11: 476935271
+      white_bar_4K_12: 991549961
+      white_bar_4K_13: -1590600872
+      white_bar_4K_14: -2070972018
+      white_bar_4K_15: -943913699
+      white_bar_4K_2: -1274518221
+      white_bar_4K_3: -1233694471
+      white_bar_4K_4: -833919576
+      white_bar_4K_5: 89299670
+      white_bar_4K_6: 1461587296
+      white_bar_4K_7: 257983434
+      white_bar_4K_8: -1438434252
+      white_bar_4K_9: 397283074
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
