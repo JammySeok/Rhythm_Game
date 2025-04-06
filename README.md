@@ -1,6 +1,8 @@
 # Rhythm_Game
 
-이 프로젝트는 Unity를 사용하여 만든 리듬 게임입니다. 게임 내에서 사용된 소스코드는 [LHEALP/UnityRhythmGame](https://github.com/LHEALP/UnityRhythmGame)에서 사용 및 참고하였으며, 사용된 음악은 [Somyu Official](https://soundcloud.com/somyuofficial)에게 저작권이 있습니다.
+이 프로젝트는 대학교 과제 제출하기 위해 Unity를 사용하여 만든 리듬 게임입니다. 게임 내에서 사용된 소스코드는 [LHEALP/UnityRhythmGame](https://github.com/LHEALP/UnityRhythmGame)에서 사용 및 참고하였고, 
+이미지 스킨은 EZ2ON을 사용하였으며, 
+사용된 음악은 [Somyu Official](https://soundcloud.com/somyuofficial)에게 저작권이 있습니다.
 
 
 ## 사용된 소스코드
