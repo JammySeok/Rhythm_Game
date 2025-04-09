@@ -159,10 +159,10 @@ TextureImporter:
       name: white_bar_4K_4
       rect:
         serializedVersion: 2
-        x: 1
-        y: 195
-        width: 543
-        height: 88
+        x: 2
+        y: 196
+        width: 541
+        height: 86
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -172,27 +172,6 @@ TextureImporter:
       bones: []
       spriteID: ccabd9ceb831ebe4fafa73b0c518a6e5
       internalID: -833919576
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: white_bar_4K_5
-      rect:
-        serializedVersion: 2
-        x: 1
-        y: 784
-        width: 56
-        height: 47
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e51697086d35d3347acd65a5d5b439b0
-      internalID: 89299670
       vertices: []
       indices: 
       edges: []
@@ -348,10 +327,10 @@ TextureImporter:
       name: white_bar_4K_13
       rect:
         serializedVersion: 2
-        x: 737
-        y: 570
-        width: 54
-        height: 400
+        x: 738
+        y: 571
+        width: 52
+        height: 398
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -369,10 +348,10 @@ TextureImporter:
       name: white_bar_4K_14
       rect:
         serializedVersion: 2
-        x: 792
-        y: 570
-        width: 54
-        height: 400
+        x: 793
+        y: 571
+        width: 52
+        height: 398
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
