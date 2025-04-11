@@ -45,6 +45,7 @@ public class GameManager : MonoBehaviour
     public List<GameObject> canvases = new List<GameObject>();
     enum Canvas
     {
+        // GameManager에 들어갈거 여기에 넣기
         Title,
         Select,
         SFX,

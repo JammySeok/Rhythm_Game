@@ -100,7 +100,8 @@ public class Parser
         }
 
         yield return IEGetClip(title);
-        yield return IEGetImg(title);
+        //yield return IEGetImg(title);
+        yield return null;
 
         sheet.clip = clip;
         sheet.img = img;
@@ -115,7 +116,8 @@ public class Parser
             clip.name = title;
         }
     }
-
+ 
+    /*
     public IEnumerator IEGetImg(string title)
     {
         using (UnityWebRequest request = UnityWebRequestTexture.GetTexture($"{basePath}/{title}/{title}.jpg"))
@@ -126,4 +128,5 @@ public class Parser
             img.name = title;
         }
     }
+    */
 }

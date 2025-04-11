@@ -4,3 +4,5 @@ Input System
 2. Other Settings 섹션으로 이동
 3. Active Input Handling 옵션
   - Input Manager (Old)에서 Input System Package (New) 로
+
+TextMeshPro
