@@ -49,7 +49,6 @@ public class GameManager : MonoBehaviour
         Title,
         Select,
         SFX,
-        GameBGA,
         Game,
         Result,
         Editor,
@@ -150,7 +149,6 @@ public class GameManager : MonoBehaviour
 
         yield return new WaitForSeconds(2f);
         canvases[(int)Canvas.Game].SetActive(false);
-        canvases[(int)Canvas.GameBGA].SetActive(false);
         canvases[(int)Canvas.Result].SetActive(false);
         canvases[(int)Canvas.Select].SetActive(false);        
         canvases[(int)Canvas.Editor].SetActive(false);
@@ -166,8 +164,7 @@ public class GameManager : MonoBehaviour
         canvases[(int)Canvas.SFX].SetActive(true);
         yield return StartCoroutine(AniPreset.Instance.IEAniFade(sfxFade, false, 1f));
 
-        canvases[(int)Canvas.Title].GetComponent<Animation>().Play();
-        yield return new WaitForSeconds(5.6f);
+        yield return new WaitForSeconds(1f);
 
         Select();
     }
@@ -205,8 +202,6 @@ public class GameManager : MonoBehaviour
 
         canvases[(int)Canvas.Game].SetActive(true);
 
-        canvases[(int)Canvas.GameBGA].SetActive(true);
-
         FindObjectOfType<Judgement>().Init();
 
         Score.Instance.Clear();
@@ -240,7 +235,6 @@ public class GameManager : MonoBehaviour
         canvases[(int)Canvas.SFX].SetActive(true);
         yield return StartCoroutine(AniPreset.Instance.IEAniFade(sfxFade, true, 2f));
         canvases[(int)Canvas.Game].SetActive(false);
-        canvases[(int)Canvas.GameBGA].SetActive(false);
         canvases[(int)Canvas.Result].SetActive(true);
 
         UIText rscore = UIController.Instance.FindUI("UI_R_Score").uiObject as UIText;

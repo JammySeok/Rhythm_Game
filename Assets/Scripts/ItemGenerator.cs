@@ -28,14 +28,12 @@ public class ItemGenerator : MonoBehaviour
 
     public void Init()
     {
-        Image cover = item.transform.GetChild(0).GetComponent<Image>();
-        TextMeshProUGUI level = item.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
-        TextMeshProUGUI title = item.transform.GetChild(2).GetComponent<TextMeshProUGUI>();
-        TextMeshProUGUI artist = item.transform.GetChild(3).GetComponent<TextMeshProUGUI>();
+        TextMeshProUGUI level = item.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+        TextMeshProUGUI title = item.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
+        TextMeshProUGUI artist = item.transform.GetChild(2).GetComponent<TextMeshProUGUI>();
 
         foreach (var sheet in GameManager.Instance.sheets)
         {
-            cover.sprite = sheet.Value.img;
             level.text = "";
             title.text = sheet.Value.title;
             artist.text = sheet.Value.artist;

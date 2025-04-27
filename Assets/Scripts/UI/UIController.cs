@@ -36,8 +36,10 @@ public class UIController : MonoBehaviour
         uiObjectDic["UI_G_Combo"].action = Score.Instance.Ani;
 
         //uiObjectDic["UI_E_ProgressBar"].action = Editor.Instance.Progress;
-        uiObjectDic["UI_E_Play"].action = Editor.Instance.Play;
-        uiObjectDic["UI_E_Stop"].action = Editor.Instance.Stop;
+
+        // editor 부분분 잠시 주석
+        //uiObjectDic["UI_E_Play"].action = Editor.Instance.Play;
+        //uiObjectDic["UI_E_Stop"].action = Editor.Instance.Stop;
     }
 
     public UIActor FindUI(string uiName)
