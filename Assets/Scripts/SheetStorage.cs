@@ -5,16 +5,6 @@ using UnityEngine;
 
 public class SheetStorage : MonoBehaviour
 {
-    /*
-     * 저장
-        1) 노트 오브젝트 읽어서 y좌표 기반으로 시간 계산
-        BarPerSec / 16 * 노트y좌표 = 저장될 시간
-
-        롱노트의 경우
-        Head y좌표 = NoteLong의 y좌표
-        Tail y좌표 = NoteLong.y + tail.y가 최종좌표
-     */
-
 
     void Start()
     {
@@ -30,7 +20,7 @@ public class SheetStorage : MonoBehaviour
         float baseTime = sheet.BarPerSec / 16;
         foreach (NoteObject note in NoteGenerator.Instance.toReleaseList)
         {
-            if (!note.gameObject.activeSelf) // 비활성화되어있다면 삭제된 노트이므로 무시
+            if (!note.gameObject.activeSelf) 
                 continue;
 
             float line = note.transform.position.x;
@@ -122,7 +112,7 @@ public class SheetStorage : MonoBehaviour
         }
         else
         {
-            Debug.LogError($"{sheet.title}.sheet가 이미 존재합니다 !");
+            Debug.LogError($"{sheet.title}.sheet");
             return;
         }
 

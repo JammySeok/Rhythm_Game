@@ -151,7 +151,6 @@ public class InputManager : MonoBehaviour
         }
     }
 
-    // 에디터
     public void OnMouseBtn(InputAction.CallbackContext context)
     {
         if (context.started)
@@ -198,10 +197,8 @@ public class InputManager : MonoBehaviour
         }
     }
 
-    // 테스트용 코드
     public void OnTest(InputAction.CallbackContext context)
     {
-        // Audio Time을 끝으로 옮겨 결과창을 바로 볼 수 있게 위함
         AudioManager.Instance.audioSource.time = AudioManager.Instance.Length;
 
         //FindObjectOfType<SheetStorage>().Save();

@@ -139,14 +139,8 @@ public class Editor : MonoBehaviour
             float time = AudioManager.Instance.Length * slider.slider.value;
             AudioManager.Instance.progressTime = time;
 
-            // 음악 타임에 맞춰서 오브젝트스 이동
-            // 한마디에 16씩 이동
-            // time / 한마디 시간
-
             CaculateCurrnetBar();
 
-            // 한 그리드(한 마디)의 게임오브젝트 y좌표의 높이는 16
-            // 현재 음악위치 * 16 = 높이s
             float barPerTime = GameManager.Instance.sheets[GameManager.Instance.title].BarPerSec;
             float pos = time / barPerTime * 16;
 
