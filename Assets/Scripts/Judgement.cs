@@ -93,7 +93,7 @@ public class Judgement : MonoBehaviour
                 Score.Instance.data.combo = 0;
             }
             Score.Instance.SetScore();
-            JudgeEffect.Instance.OnEffect(line);
+            // JudgeEffect.Instance.OnEffect(line);  // 기능 잠시 비활성화
 
             if (note.type == (int)NoteType.Short)
             {

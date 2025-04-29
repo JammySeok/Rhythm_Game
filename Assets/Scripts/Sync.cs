@@ -17,7 +17,7 @@ public class Sync : MonoBehaviour
     {
         judgement = FindObjectOfType<Judgement>();
         sr = judgeLine.GetComponent<SpriteRenderer>();
-        sr.color = sr.color = new Color(1, 1, 1, 0);
+        sr.color = sr.color = new Color(1, 0, 0);
     }
 
     public void Down()
@@ -66,7 +66,7 @@ public class Sync : MonoBehaviour
 
     IEnumerator IEPopup()
     {
-        sr.color = new Color(1, 1, 1, 0);
+        sr.color = new Color(1, 0, 0);
         text.SetColor(sr.color);
         float time = 0f;
         float speed = 4f;
@@ -91,7 +91,7 @@ public class Sync : MonoBehaviour
             time += Time.deltaTime * speed;
             yield return null;
         }
-        sr.color = new Color(1, 1, 1, 0);
+        sr.color = new Color(1, 0, 0);
         text.SetColor(sr.color);
     }
 }

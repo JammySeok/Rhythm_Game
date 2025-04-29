@@ -18,7 +18,7 @@ public class NoteGenerator : MonoBehaviour
     public GameObject notePrefab;
     public Material lineRendererMaterial;
 
-    public readonly float[] linePos = { -3.5f, -2.5f, -2.5f, -1.5f };
+    public readonly float[] linePos = { -3.37f, -2.5f, -1.5f, -0.61f };
     readonly float defaultInterval = 0.005f;
     public float Interval { get; private set; }
 
