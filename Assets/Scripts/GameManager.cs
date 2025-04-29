@@ -206,7 +206,8 @@ public class GameManager : MonoBehaviour
 
         Score.Instance.Clear();
 
-        JudgeEffect.Instance.Init();
+        // Judge Effect 사용 안함
+        // JudgeEffect.Instance.Init();
 
         yield return StartCoroutine(AniPreset.Instance.IEAniFade(sfxFade, false, 2f));
         canvases[(int)Canvas.SFX].SetActive(false);

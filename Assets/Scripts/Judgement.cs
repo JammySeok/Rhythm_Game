@@ -25,7 +25,7 @@ public class Judgement : MonoBehaviour
 
     int curruntTime = 0;
     /// <summary>
-    /// User¿¡ ÀÇÇØ Á¶Á¤µÈ ÆÇÁ¤ Å¸ÀÌ¹Ö
+    /// Userï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½Ì¹ï¿½
     /// </summary>
     public int judgeTimeFromUserSetting = 0;
 
@@ -149,7 +149,7 @@ public class Judgement : MonoBehaviour
 
                 if (note.type == (int)NoteType.Long)
                 {
-                    if (longNoteCheck[note.line - 1] == 0) // Head°¡ ÆÇÁ¤Ã³¸®°¡ ¾ÈµÈ °æ¿ì
+                    if (longNoteCheck[note.line - 1] == 0) 
                     {
                         if (judgeTime < -miss)
                         {
