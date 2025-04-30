@@ -33,7 +33,7 @@ public class NoteShort : NoteObject
         while (true)
         {
             transform.position += Vector3.down * speed * Time.deltaTime;
-            if (transform.position.y < -1f)
+            if (transform.position.y < -3.5f)
                 life = false;
 
             yield return null;
@@ -47,7 +47,7 @@ public class NoteShort : NoteObject
 
     public override void Interpolate(float curruntTime, float interval)
     {
-        transform.position = new Vector3(transform.position.x, (note.time - curruntTime) * interval, transform.position.z);
+        transform.position = new Vector3(transform.position.x, (note.time - curruntTime) * interval - 3.5f, transform.position.z);
     }
 
     public override void SetCollider()
@@ -110,7 +110,7 @@ public class NoteLong : NoteObject
         {
             transform.position += Vector3.down * speed * Time.deltaTime;
 
-            if (tail.transform.position.y < -1f)
+            if (tail.transform.position.y < -3.5f)
                 life = false;
 
             yield return null;
@@ -132,9 +132,12 @@ public class NoteLong : NoteObject
 
     public override void Interpolate(float curruntTime, float interval)
     {
-        transform.position = new Vector3(head.transform.position.x, (note.time - curruntTime) * interval, head.transform.position.z);
-        head.transform.position = new Vector3(head.transform.position.x, (note.time - curruntTime) * interval, head.transform.position.z);
-        tail.transform.position = new Vector3(tail.transform.position.x, (note.tail - curruntTime) * interval, tail.transform.position.z);
+        float yHead = (note.time - curruntTime) * interval - 3.5f;
+        float yTail = (note.tail - curruntTime) * interval - 3.5f;
+        
+        transform.position = new Vector3(transform.position.x, yHead, transform.position.z);
+        head.transform.position = new Vector3(head.transform.position.x, yHead, head.transform.position.z);
+        tail.transform.position = new Vector3(tail.transform.position.x, yTail, tail.transform.position.z);
         line.transform.position = head.transform.position;
 
         Vector3 linePos = tail.transform.position - head.transform.position;

@@ -2058,6 +2058,7 @@ MonoBehaviour:
   parent: {fileID: 375207330}
   notePrefab: {fileID: 5407403529770059289, guid: bf4b75c110090a046818872edcef25cf, type: 3}
   lineRendererMaterial: {fileID: 2100000, guid: d7aa5bf0b27941048b3a437a05f739d8, type: 2}
+  judgeLineY: -3.5
   toReleaseList: []
 --- !u!1 &480558487
 GameObject:

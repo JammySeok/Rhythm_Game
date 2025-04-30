@@ -36,10 +36,6 @@ public class Sync : MonoBehaviour
 
         text.SetText(txt);
         text.GetComponent<RectTransform>().anchoredPosition3D += Vector3.down * 2.5f;
-
-        if (coPopup != null)
-            StopCoroutine(coPopup);
-        coPopup = StartCoroutine(IEPopup());
     }
 
     public void Up()
@@ -58,40 +54,6 @@ public class Sync : MonoBehaviour
 
         text.SetText(txt);
         text.GetComponent<RectTransform>().anchoredPosition3D += Vector3.up * 2.5f;
-
-        if (coPopup != null)
-            StopCoroutine(coPopup);
-        coPopup = StartCoroutine(IEPopup());
     }
 
-    IEnumerator IEPopup()
-    {
-        sr.color = new Color(1, 0, 0);
-        text.SetColor(sr.color);
-        float time = 0f;
-        float speed = 4f;
-        while (time < 1f)
-        {
-            sr.color = new Color(1, 1, 1, time);
-            text.SetColor(sr.color);
-
-            time += Time.deltaTime * speed;
-            yield return null;
-        }
-        sr.color = new Color(1, 1, 1, 1);
-        text.SetColor(sr.color);
-        yield return new WaitForSeconds(1f);
-
-        time = 0f;
-        while (time < 1f)
-        {
-            sr.color = new Color(1, 1, 1, 1 - time);
-            text.SetColor(sr.color);
-
-            time += Time.deltaTime * speed;
-            yield return null;
-        }
-        sr.color = new Color(1, 0, 0);
-        text.SetColor(sr.color);
-    }
 }
