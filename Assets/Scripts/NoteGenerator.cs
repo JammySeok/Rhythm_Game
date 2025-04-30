@@ -74,7 +74,7 @@ public class NoteGenerator : MonoBehaviour
         line.AddComponent<LineRenderer>();
         LineRenderer lineRenderer = line.GetComponent<LineRenderer>();
         lineRenderer.material = lineRendererMaterial;
-        lineRenderer.sortingOrder = 3;
+        lineRenderer.sortingOrder = 0;
         lineRenderer.widthMultiplier = 0.8f;
         lineRenderer.positionCount = 2;
         lineRenderer.useWorldSpace = false;

@@ -33,7 +33,7 @@ public class GridObject : MonoBehaviour
 
     void Update()
     {
-        // ÀÚ±â Â÷·Ê¿Í ¸Ö¸é ºñÈ°¼ºÈ­ »óÅÂ
+        // ï¿½Ú±ï¿½ ï¿½ï¿½ï¿½Ê¿ï¿½ ï¿½Ö¸ï¿½ ï¿½ï¿½È°ï¿½ï¿½È­ ï¿½ï¿½ï¿½ï¿½
         int currentBar = Editor.Instance.currentBar;
         if (index >= currentBar - 3 && index <= currentBar + 3)
         {
