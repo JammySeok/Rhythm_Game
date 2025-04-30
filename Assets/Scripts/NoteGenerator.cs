@@ -106,11 +106,6 @@ public class NoteGenerator : MonoBehaviour
         coInterpolate = StartCoroutine(IEInterpolate(0.1f, 4f));
     }
 
-    public void GenAll()
-    {
-        Gen2();
-    }
-
     public void StopGen()
     {
         if (coGenTimer != null)
@@ -124,7 +119,6 @@ public class NoteGenerator : MonoBehaviour
             coReleaseTimer = null;
         }
         ReleaseCompleted();
-        Editor.Instance.objects.transform.position = Vector3.zero;
 
         toReleaseList.Clear();
         currentBar = 3;
@@ -183,97 +177,6 @@ public class NoteGenerator : MonoBehaviour
                 noteObject.Move();
                 toReleaseList.Add(noteObject);
             }
-        }
-    }
-
-        void Gen2()
-    {
-        Sheet sheet = GameManager.Instance.sheets[GameManager.Instance.title];
-        List<Note> notes = sheet.notes;
-
-        float gridLineInterval = 0.25f;
-
-        float shortPrevPos = 0;
-        int shortPrevTime = 0;
-
-        float headLongPrevPos = 0;
-        int headLongPrevTime = 0;
-
-        float tailLongPrevPos = 0;
-        int tailLongPrevTime = 0;
-
-        foreach (Note note in notes)
-        {
-            NoteObject noteObject = null;
-
-            switch (note.type)
-            {
-                case (int)NoteType.Short:
-                    noteObject = PoolShort.Get();
-                    {
-                        int pos = Mathf.RoundToInt((note.time - shortPrevTime - sheet.offset) / sheet.BeatPerSec);
-                        shortPrevPos += pos;
-                        noteObject.SetPosition(new Vector3[] {
-                            new Vector3(linePos[note.line - 1], judgeLineY + shortPrevPos * gridLineInterval, 0f)
-                        });
-                        shortPrevTime = note.time;
-                    }
-                    break;
-
-                case (int)NoteType.Long:
-                    noteObject = PoolLong.Get();
-                    {
-                        int pos = Mathf.RoundToInt((note.time - headLongPrevTime - sheet.offset) / sheet.BeatPerSec);
-                        int pos2 = Mathf.RoundToInt((note.tail - tailLongPrevTime - sheet.offset) / sheet.BeatPerSec);
-
-                        headLongPrevPos += pos;
-                        tailLongPrevPos += pos2;
-
-                        noteObject.SetPosition(new Vector3[] {
-                            new Vector3(linePos[note.line - 1], judgeLineY + headLongPrevPos * gridLineInterval, 0f),
-                            new Vector3(linePos[note.line - 1], judgeLineY + tailLongPrevPos * gridLineInterval, 0f)
-                        });
-
-                        headLongPrevTime = note.time;
-                        tailLongPrevTime = note.tail;
-                    }
-                    break;
-            }
-
-            if (noteObject != null)
-            {
-                noteObject.note = note;
-                noteObject.life = true;
-                noteObject.gameObject.SetActive(true);
-                noteObject.SetCollider();
-                toReleaseList.Add(noteObject);
-            }
-        }
-    }
-
-    public void DisposeNoteShort(NoteType type, Vector3 pos)
-    {
-        NoteObject noteObject = PoolShort.Get();
-        noteObject.SetPosition(new Vector3[] { pos });
-        noteObject.gameObject.SetActive(true);
-        noteObject.SetCollider();
-        toReleaseList.Add(noteObject);
-    }
-
-    NoteObject noteObjectTemp;
-    public void DisposeNoteLong(int makingCount, Vector3[] pos)
-    {
-        if (makingCount == 0)
-        {
-            noteObjectTemp = PoolLong.Get();
-            noteObjectTemp.SetPosition(new Vector3[] { pos[0], pos[1] });
-            noteObjectTemp.gameObject.SetActive(true);
-        }
-        else if (makingCount == 1)
-        {
-            noteObjectTemp.SetPosition(new Vector3[] { pos[0], pos[1] });
-            noteObjectTemp.SetCollider();
-            toReleaseList.Add(noteObjectTemp);
         }
     }
 

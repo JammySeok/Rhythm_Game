@@ -9,8 +9,6 @@ public class InputManager : MonoBehaviour
     Judgement judgement = null;
     Sync sync = null;
 
-    public Vector2 mousePos;
-
     void Start()
     {
         foreach (var effect in keyEffects)
@@ -19,12 +17,6 @@ public class InputManager : MonoBehaviour
         }
         judgement = FindObjectOfType<Judgement>();
         sync = FindObjectOfType<Sync>();
-    }
-
-    void Update()
-    {
-        if (GameManager.Instance.state == GameManager.GameState.Edit)
-            mousePos = Mouse.current.position.ReadValue();
     }
 
     public void OnNoteLine0(InputAction.CallbackContext context)
@@ -40,6 +32,7 @@ public class InputManager : MonoBehaviour
             keyEffects[0].gameObject.SetActive(false);
         }
     }
+
     public void OnNoteLine1(InputAction.CallbackContext context)
     {
         if (context.started)
@@ -53,6 +46,7 @@ public class InputManager : MonoBehaviour
             keyEffects[1].gameObject.SetActive(false);
         }
     }
+
     public void OnNoteLine2(InputAction.CallbackContext context)
     {
         if (context.started)
@@ -66,6 +60,7 @@ public class InputManager : MonoBehaviour
             keyEffects[2].gameObject.SetActive(false);
         }
     }
+
     public void OnNoteLine3(InputAction.CallbackContext context)
     {
         if (context.started)
@@ -79,6 +74,7 @@ public class InputManager : MonoBehaviour
             keyEffects[3].gameObject.SetActive(false);
         }
     }
+
     public void OnSpeedDown(InputAction.CallbackContext context)
     {
         if (context.started)
@@ -90,6 +86,7 @@ public class InputManager : MonoBehaviour
             speedUI.SetText("Speed " + GameManager.Instance.Speed.ToString("0.0"));
         }
     }
+
     public void OnSpeedUp(InputAction.CallbackContext context)
     {
         if (context.started)
@@ -101,6 +98,7 @@ public class InputManager : MonoBehaviour
             speedUI.SetText("Speed " + GameManager.Instance.Speed.ToString("0.0"));
         }
     }
+
     public void OnJudgeDown(InputAction.CallbackContext context)
     {
         if (context.started)
@@ -109,6 +107,7 @@ public class InputManager : MonoBehaviour
                 sync.Down();
         }
     }
+
     public void OnJudgeUp(InputAction.CallbackContext context)
     {
         if (context.started)
@@ -135,13 +134,9 @@ public class InputManager : MonoBehaviour
                 if (!GameManager.Instance.isPlaying)
                     GameManager.Instance.Play();
             }
-            else
-            {
-                if (!GameManager.Instance.isPlaying)
-                    GameManager.Instance.Edit();
-            }
         }
     }
+
     public void OnExit(InputAction.CallbackContext context)
     {
         if (context.started)
@@ -151,56 +146,12 @@ public class InputManager : MonoBehaviour
         }
     }
 
-    public void OnMouseBtn(InputAction.CallbackContext context)
-    {
-        if (context.started)
-        {
-            if (GameManager.Instance.state == GameManager.GameState.Edit)
-                EditorController.Instance.MouseBtn(context.control.name);                
-        }
-    }
-
-    public void OnMouseWheel(InputAction.CallbackContext context)
-    {
-        if (context.started)
-        {
-            if (GameManager.Instance.state == GameManager.GameState.Edit)
-            {
-                EditorController.Instance.Scroll(context.ReadValue<float>());
-            }
-        }
-    }
-
-    public void OnSpace(InputAction.CallbackContext context)
-    {
-        if (context.started)
-        {
-            if (GameManager.Instance.state == GameManager.GameState.Edit)
-                EditorController.Instance.Space();
-        }
-    }
-
-    public void OnCtrl(InputAction.CallbackContext context)
-    {
-        if (context.started)
-        {
-            if (GameManager.Instance.state == GameManager.GameState.Edit)
-            {
-                EditorController.Instance.isCtrl = true;
-                EditorController.Instance.Ctrl();
-            }
-        }
-        else if (context.canceled)
-        {
-            if (GameManager.Instance.state == GameManager.GameState.Edit)
-                EditorController.Instance.isCtrl = false;
-        }
-    }
-
     public void OnTest(InputAction.CallbackContext context)
     {
-        AudioManager.Instance.audioSource.time = AudioManager.Instance.Length;
-
-        //FindObjectOfType<SheetStorage>().Save();
+        if (context.started)
+        {
+            AudioManager.Instance.audioSource.time = AudioManager.Instance.Length;
+            // FindObjectOfType<SheetStorage>().Save();
+        }
     }
 }

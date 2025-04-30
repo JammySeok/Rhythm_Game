@@ -45,13 +45,11 @@ public class GameManager : MonoBehaviour
     public List<GameObject> canvases = new List<GameObject>();
     enum Canvas
     {
-        // GameManager에 들어갈거 여기에 넣기
         Title,
         Select,
         SFX,
         Game,
         Result,
-        Editor,
     }
     CanvasGroup sfxFade;
 
@@ -68,18 +66,8 @@ public class GameManager : MonoBehaviour
 
     public void ChangeMode(UIObject uiObject)
     {
-        if (state == GameState.Game)
-        {
-            state = GameState.Edit;
-            TextMeshProUGUI text = uiObject.transform.GetComponentInChildren<TextMeshProUGUI>();
-            text.text = "Edit\nMode";
-        }
-        else
-        {
-            state = GameState.Game;
-            TextMeshProUGUI text = uiObject.transform.GetComponentInChildren<TextMeshProUGUI>();
-            text.text = "Game\nMode";
-        }
+        TextMeshProUGUI text = uiObject.transform.GetComponentInChildren<TextMeshProUGUI>();
+        text.text = "Game\nMode";  // 또는 해당 버튼 UI를 제거
     }
 
     public void Title()
@@ -97,11 +85,6 @@ public class GameManager : MonoBehaviour
         StartCoroutine(IEInitPlay());
     }
 
-    public void Edit()
-    {
-        StartCoroutine(IEEdit());
-    }
-
     public void Stop()
     {
         if (state == GameState.Game)
@@ -113,16 +96,6 @@ public class GameManager : MonoBehaviour
                 StopCoroutine(coPlaying);
                 coPlaying = null;
             }
-        }
-        else
-        {
-            canvases[(int)Canvas.Editor].SetActive(false);
-            Editor.Instance.Stop();
-
-            FindObjectOfType<GridGenerator>().InActivate();
-
-            StartCoroutine(Parser.Instance.IEParse(title));
-            sheets[title] = Parser.Instance.sheet;
         }
 
         NoteGenerator.Instance.StopGen();
@@ -151,7 +124,6 @@ public class GameManager : MonoBehaviour
         canvases[(int)Canvas.Game].SetActive(false);
         canvases[(int)Canvas.Result].SetActive(false);
         canvases[(int)Canvas.Select].SetActive(false);        
-        canvases[(int)Canvas.Editor].SetActive(false);
 
         yield return new WaitUntil(() => SheetLoader.Instance.bLoadFinish == true);
         ItemGenerator.Instance.Init();
@@ -187,7 +159,7 @@ public class GameManager : MonoBehaviour
     }
 
     IEnumerator IEInitPlay()
-    {        
+    {
         isPlaying = true;
 
         canvases[(int)Canvas.SFX].SetActive(true);
@@ -202,12 +174,9 @@ public class GameManager : MonoBehaviour
 
         canvases[(int)Canvas.Game].SetActive(true);
 
-        FindObjectOfType<Judgement>().Init();
-
-        Score.Instance.Clear();
-
-        // Judge Effect 사용 안함
-        // JudgeEffect.Instance.Init();
+        Score.Instance.Clear(); 
+        
+        FindObjectOfType<Judgement>().Init(); 
 
         yield return StartCoroutine(AniPreset.Instance.IEAniFade(sfxFade, false, 2f));
         canvases[(int)Canvas.SFX].SetActive(false);
@@ -263,36 +232,4 @@ public class GameManager : MonoBehaviour
         Select();
     }
 
-    IEnumerator IEEdit()
-    {
-        isPlaying = true;
-
-        canvases[(int)Canvas.SFX].SetActive(true);
-        yield return StartCoroutine(AniPreset.Instance.IEAniFade(sfxFade, true, 2f));
-
-        //  Select UI
-        canvases[(int)Canvas.Select].SetActive(false);
-
-        // Sheet 
-        title = sheets.ElementAt(ItemController.Instance.page).Key;
-        sheets[title].Init();
-
-        // Audio 
-        AudioManager.Instance.Insert(sheets[title].clip);
-
-        // Grid
-        FindObjectOfType<GridGenerator>().Init();
-
-        // Note
-        NoteGenerator.Instance.GenAll();
-
-        // Editor UI 
-        canvases[(int)Canvas.Editor].SetActive(true);
-
-        // Editor 
-        Editor.Instance.Init();
-
-        yield return StartCoroutine(AniPreset.Instance.IEAniFade(sfxFade, false, 2f));
-        canvases[(int)Canvas.SFX].SetActive(false);
-    }
 }

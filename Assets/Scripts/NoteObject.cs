@@ -5,20 +5,14 @@ using UnityEngine;
 public abstract class NoteObject : MonoBehaviour
 {
     public bool life = false;
-
     public Note note = new Note();
-
     public float speed = 5f;
 
     public abstract void Move();
     public abstract IEnumerator IEMove();
-
     public abstract void SetPosition(Vector3[] pos);
-
     public abstract void Interpolate(float curruntTime, float interval);
-
     public abstract void SetCollider();
-    public abstract IEnumerator IECheckCollier();
 }
 
 public class NoteShort : NoteObject
@@ -35,14 +29,13 @@ public class NoteShort : NoteObject
             transform.position += Vector3.down * speed * Time.deltaTime;
             if (transform.position.y < -3.5f)
                 life = false;
-
             yield return null;
         }
     }
 
     public override void SetPosition(Vector3[] pos)
     {
-        transform.position = new Vector3(pos[0].x, pos[0].y, pos[0].z);
+        transform.position = pos[0];
     }
 
     public override void Interpolate(float curruntTime, float interval)
@@ -52,35 +45,8 @@ public class NoteShort : NoteObject
 
     public override void SetCollider()
     {
-        if (GameManager.Instance.state == GameManager.GameState.Game)
-        {
-            GetComponent<BoxCollider2D>().enabled = false;
-        }
-        else
-        {
-            StartCoroutine(IECheckCollier());
-        }
-    }
-
-    public override IEnumerator IECheckCollier()
-    {
-        WaitForSeconds wait = new WaitForSeconds(0.1f);
-        while (true)
-        {
-            int time = (int)transform.localPosition.y;
-            int currentBar = Editor.Instance.currentBar;
-            
-            if (time >= (currentBar - 3) * 16 && time <= (currentBar + 3) * 16)
-            {
-                GetComponent<BoxCollider2D>().enabled = true;
-            }
-            else
-            {
-                GetComponent<BoxCollider2D>().enabled = false;
-            }
-
-            yield return wait;
-        }
+        // Always disable collider since editor mode is removed
+        GetComponent<BoxCollider2D>().enabled = false;
     }
 }
 
@@ -119,9 +85,9 @@ public class NoteLong : NoteObject
 
     public override void SetPosition(Vector3[] pos)
     {
-        transform.position = new Vector3(pos[0].x, pos[0].y, pos[0].z);
-        head.transform.position = new Vector3(pos[0].x, pos[0].y, pos[0].z);
-        tail.transform.position = new Vector3(pos[1].x, pos[1].y, pos[1].z);
+        transform.position = pos[0];
+        head.transform.position = pos[0];
+        tail.transform.position = pos[1];
         line.transform.position = head.transform.position;
 
         Vector3 linePos = tail.transform.position - head.transform.position;
@@ -134,7 +100,7 @@ public class NoteLong : NoteObject
     {
         float yHead = (note.time - curruntTime) * interval - 3.5f;
         float yTail = (note.tail - curruntTime) * interval - 3.5f;
-        
+
         transform.position = new Vector3(transform.position.x, yHead, transform.position.z);
         head.transform.position = new Vector3(head.transform.position.x, yHead, head.transform.position.z);
         tail.transform.position = new Vector3(tail.transform.position.x, yTail, tail.transform.position.z);
@@ -148,36 +114,8 @@ public class NoteLong : NoteObject
 
     public override void SetCollider()
     {
-        if (GameManager.Instance.state == GameManager.GameState.Game)
-        {
-            head.GetComponent<BoxCollider2D>().enabled = false;
-            tail.GetComponent<BoxCollider2D>().enabled = false;
-        }
-        else
-        {
-            StartCoroutine(IECheckCollier());
-        }
-    }
-
-    public override IEnumerator IECheckCollier()
-    {
-        WaitForSeconds wait = new WaitForSeconds(0.1f);
-        while (true)
-        {
-            int time = (int)transform.localPosition.y;
-            int currentBar = Editor.Instance.currentBar;
-            if (time >= (currentBar - 3) * 16 && time <= (currentBar + 3) * 16)
-            {
-                head.GetComponent<BoxCollider2D>().enabled = true;
-                tail.GetComponent<BoxCollider2D>().enabled = true;
-            }
-            else
-            {
-                head.GetComponent<BoxCollider2D>().enabled = false;
-                tail.GetComponent<BoxCollider2D>().enabled = false;
-            }
-
-            yield return wait;
-        }
+        // Always disable colliders since Editor mode is removed
+        head.GetComponent<BoxCollider2D>().enabled = false;
+        tail.GetComponent<BoxCollider2D>().enabled = false;
     }
 }
