@@ -22,7 +22,7 @@ public class NoteGenerator : MonoBehaviour
     readonly float defaultInterval = 0.005f;
     public float Interval { get; private set; }
 
-    public float judgeLineY = -3.5f; 
+    public float judgeLineY = -3f; 
 
     IObjectPool<NoteShort> poolShort;
     public IObjectPool<NoteShort> PoolShort

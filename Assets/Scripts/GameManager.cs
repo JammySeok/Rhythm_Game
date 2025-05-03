@@ -67,7 +67,7 @@ public class GameManager : MonoBehaviour
     public void ChangeMode(UIObject uiObject)
     {
         TextMeshProUGUI text = uiObject.transform.GetComponentInChildren<TextMeshProUGUI>();
-        text.text = "Game\nMode";  // 또는 해당 버튼 UI를 제거
+        text.text = "Game\nMode"; 
     }
 
     public void Title()
@@ -174,7 +174,8 @@ public class GameManager : MonoBehaviour
 
         canvases[(int)Canvas.Game].SetActive(true);
 
-        Score.Instance.Clear(); 
+        Score.Instance.Clear();
+        UpdateJudgeUI();
         
         FindObjectOfType<Judgement>().Init(); 
 
@@ -234,6 +235,21 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(5f);
 
         Select();
+    }
+
+    public void UpdateJudgeUI()
+    {
+        UIText koolText = UIController.Instance.FindUI("UI_G_Kool").uiObject as UIText;
+        UIText coolText = UIController.Instance.FindUI("UI_G_Cool").uiObject as UIText;
+        UIText goodText = UIController.Instance.FindUI("UI_G_Good").uiObject as UIText;
+        UIText missText = UIController.Instance.FindUI("UI_G_Miss").uiObject as UIText;
+        UIText failText = UIController.Instance.FindUI("UI_G_Fail").uiObject as UIText;
+
+        koolText.SetText(Score.Instance.data.kool.ToString());
+        coolText.SetText(Score.Instance.data.cool.ToString());
+        goodText.SetText(Score.Instance.data.good.ToString());
+        missText.SetText(Score.Instance.data.miss.ToString());
+        failText.SetText(Score.Instance.data.fail.ToString());
     }
 
 }

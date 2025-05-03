@@ -13,7 +13,7 @@ public class Sync : MonoBehaviour
     Coroutine coPopup;
 
     float moveAmount = 0.025f;
-    float initialY = -3.5f;    // 초기 y 위치 기준
+    float initialY = -3f;    // 초기 y 위치 기준
 
     void Start()
     {
@@ -21,7 +21,6 @@ public class Sync : MonoBehaviour
         sr = judgeLine.GetComponent<SpriteRenderer>();
         sr.color = new Color(1, 0, 0);
 
-        // 초기 위치 설정
         judgeLine.transform.position = new Vector3(judgeLine.transform.position.x, initialY, judgeLine.transform.position.z);
     }
 
@@ -39,7 +38,6 @@ public class Sync : MonoBehaviour
     {
         judgeLine.transform.position += Vector3.up * deltaY;
 
-        // y 이동량을 시간(ms) 오차로 환산
         float msOffset = deltaY / NoteGenerator.Instance.Interval;
         judgement.judgeTimeFromUserSetting += Mathf.RoundToInt(msOffset);
 
@@ -59,5 +57,7 @@ public class Sync : MonoBehaviour
             txt = $"{time} ms FAST";
 
         text.SetText(txt);
+
+        GameManager.Instance.UpdateJudgeUI();
     }
 }

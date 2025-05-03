@@ -27,7 +27,7 @@ public class NoteShort : NoteObject
         while (true)
         {
             transform.position += Vector3.down * speed * Time.deltaTime;
-            if (transform.position.y < -3.5f)
+            if (transform.position.y < -3f)
                 life = false;
             yield return null;
         }
@@ -76,7 +76,7 @@ public class NoteLong : NoteObject
         {
             transform.position += Vector3.down * speed * Time.deltaTime;
 
-            if (tail.transform.position.y < -3.5f)
+            if (tail.transform.position.y < -3f)
                 life = false;
 
             yield return null;
