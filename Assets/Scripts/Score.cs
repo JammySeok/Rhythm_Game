@@ -6,11 +6,11 @@ using UnityEngine;
 
 public struct ScoreData
 {
-    public int great;
+    public int kool;
+    public int cool;
     public int good;
     public int miss;
-    public int fastMiss; // 빨리 입력해서 미스
-    public int longMiss; // 롱노트 완성 실패, miss 카운트는 하지 않음
+    public int fail;
 
     public string[] judgeText;
     public Color[] judgeColor;
@@ -20,7 +20,7 @@ public struct ScoreData
     { 
         get
         {
-            return (great * 500) + (good * 200);
+            return (kool * 600) + (cool * 400) + (good * 200);
         }
         set
         {
@@ -28,6 +28,7 @@ public struct ScoreData
         }
     }
 }
+
 
 public class Score : MonoBehaviour
 {
@@ -63,12 +64,21 @@ public class Score : MonoBehaviour
     public void Clear()
     {
         data = new ScoreData();
+
         data.judgeText = Enum.GetNames(typeof(JudgeType));
-        data.judgeColor = new Color[3] { Color.blue, Color.yellow, Color.red };
+        data.judgeColor = new Color[5] {
+            Color.green,
+            Color.blue,
+            Color.yellow,
+            Color.red,
+            new Color(0.5f, 0f, 0.5f)
+        };
+
         uiJudgement.SetText("");
         uiCombo.SetText("");
         uiScore.SetText("0");
     }
+
 
     public void SetScore()
     {

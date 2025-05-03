@@ -4,16 +4,20 @@ using UnityEngine;
 
 public enum JudgeType
 {
-    Great,
+    Kool,
+    Cool,
     Good,
-    Miss
+    Miss,
+    Fail
 }
 
 public class Judgement : MonoBehaviour
 {
-    readonly int miss = 600;
-    readonly int good = 400;
-    readonly int great = 250;
+    readonly int fail = 800;
+    readonly int miss = 300;
+    readonly int good = 200;
+    readonly int cool = 100;
+    readonly int kool = 50;
 
     List<Queue<Note>> notes = new List<Queue<Note>>();
     Queue<Note> note1 = new Queue<Note>();
@@ -24,9 +28,6 @@ public class Judgement : MonoBehaviour
     int[] longNoteCheck = new int[4] { 0, 0, 0, 0 };
 
     int curruntTime = 0;
-    /// <summary>
-    /// User�� ���� ������ ���� Ÿ�̹�
-    /// </summary>
     public int judgeTimeFromUserSetting = 0;
 
     Coroutine coCheckMiss;
@@ -50,6 +51,7 @@ public class Judgement : MonoBehaviour
             else
                 note4.Enqueue(note);
         }
+
         notes.Add(note1);
         notes.Add(note2);
         notes.Add(note3);
@@ -69,31 +71,46 @@ public class Judgement : MonoBehaviour
 
         Note note = notes[line].Peek();
         int judgeTime = curruntTime - note.time + judgeTimeFromUserSetting;
+        int absTime = Mathf.Abs(judgeTime);
 
-        if (judgeTime < miss && judgeTime > -miss)
+        if (absTime < fail)
         {
-            if (judgeTime < good && judgeTime > -good)
+            if (absTime < miss)
             {
-                if (judgeTime < great && judgeTime > -great)
+                if (absTime < good)
                 {
-                    Score.Instance.data.great++;
-                    Score.Instance.data.judge = JudgeType.Great;
+                    if (absTime < kool)
+                    {
+                        Score.Instance.data.kool++;
+                        Score.Instance.data.judge = JudgeType.Kool;
+                    }
+                    else if (absTime < cool)
+                    {
+                        Score.Instance.data.cool++;
+                        Score.Instance.data.judge = JudgeType.Cool;
+                    }
+                    else
+                    {
+                        Score.Instance.data.good++;
+                        Score.Instance.data.judge = JudgeType.Good;
+                    }
+                    Score.Instance.data.combo++;
                 }
                 else
                 {
-                    Score.Instance.data.good++;
-                    Score.Instance.data.judge = JudgeType.Good;
+                    Score.Instance.data.miss++;
+                    Score.Instance.data.judge = JudgeType.Miss;
+                    Score.Instance.data.combo = 0;
                 }
-                Score.Instance.data.combo++;
             }
             else
             {
-                Score.Instance.data.fastMiss++;
-                Score.Instance.data.judge = JudgeType.Miss;
+                Score.Instance.data.fail++;
+                Score.Instance.data.judge = JudgeType.Fail;
                 Score.Instance.data.combo = 0;
             }
+
             Score.Instance.SetScore();
-            // JudgeEffect.Instance.OnEffect(line);  // 기능 잠시 비활성화
 
             if (note.type == (int)NoteType.Short)
             {
@@ -105,7 +122,7 @@ public class Judgement : MonoBehaviour
             }
         }
     }
-    
+
     public void CheckLongNote(int line)
     {
         if (notes[line].Count <= 0)
@@ -116,18 +133,35 @@ public class Judgement : MonoBehaviour
             return;
 
         int judgeTime = curruntTime - note.tail + judgeTimeFromUserSetting;
-        if (judgeTime < good && judgeTime > -good)
+        int absTime = Mathf.Abs(judgeTime);
+
+        if (absTime < fail)
         {
-            if (judgeTime < great && judgeTime > -great)
+            if (absTime < kool)
             {
-                Score.Instance.data.great++;
-                Score.Instance.data.judge = JudgeType.Great;
+                Score.Instance.data.kool++;
+                Score.Instance.data.judge = JudgeType.Kool;
+                Score.Instance.data.combo++;
+            }
+            else if (absTime < cool)
+            {
+                Score.Instance.data.cool++;
+                Score.Instance.data.judge = JudgeType.Cool;
+                Score.Instance.data.combo++;
+            }
+            else if (absTime < good)
+            {
+                Score.Instance.data.good++;
+                Score.Instance.data.judge = JudgeType.Good;
                 Score.Instance.data.combo++;
             }
             else
             {
-                Score.Instance.data.longMiss++;
+                Score.Instance.data.miss++;
+                Score.Instance.data.judge = JudgeType.Miss;
+                Score.Instance.data.combo = 0;
             }
+
             Score.Instance.SetScore();
             longNoteCheck[line] = 0;
             notes[line].Dequeue();
@@ -143,18 +177,19 @@ public class Judgement : MonoBehaviour
             for (int i = 0; i < notes.Count; i++)
             {
                 if (notes[i].Count <= 0)
-                    break;
+                    continue;
+
                 Note note = notes[i].Peek();
                 int judgeTime = note.time - curruntTime + judgeTimeFromUserSetting;
 
                 if (note.type == (int)NoteType.Long)
                 {
-                    if (longNoteCheck[note.line - 1] == 0) 
+                    if (longNoteCheck[note.line - 1] == 0)
                     {
-                        if (judgeTime < -miss)
+                        if (judgeTime < -fail)
                         {
-                            Score.Instance.data.miss++;
-                            Score.Instance.data.judge = JudgeType.Miss;
+                            Score.Instance.data.fail++;
+                            Score.Instance.data.judge = JudgeType.Fail;
                             Score.Instance.data.combo = 0;
                             Score.Instance.SetScore();
                             notes[i].Dequeue();
@@ -163,10 +198,10 @@ public class Judgement : MonoBehaviour
                 }
                 else
                 {
-                    if (judgeTime < -miss)
+                    if (judgeTime < -fail)
                     {
-                        Score.Instance.data.miss++;
-                        Score.Instance.data.judge = JudgeType.Miss;
+                        Score.Instance.data.fail++;
+                        Score.Instance.data.judge = JudgeType.Fail;
                         Score.Instance.data.combo = 0;
                         Score.Instance.SetScore();
                         notes[i].Dequeue();

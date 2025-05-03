@@ -208,14 +208,18 @@ public class GameManager : MonoBehaviour
         canvases[(int)Canvas.Result].SetActive(true);
 
         UIText rscore = UIController.Instance.FindUI("UI_R_Score").uiObject as UIText;
-        UIText rgreat = UIController.Instance.FindUI("UI_R_Great").uiObject as UIText;
+        UIText rkool = UIController.Instance.FindUI("UI_R_Kool").uiObject as UIText;
+        UIText rcool = UIController.Instance.FindUI("UI_R_Cool").uiObject as UIText;
         UIText rgood = UIController.Instance.FindUI("UI_R_Good").uiObject as UIText;
         UIText rmiss = UIController.Instance.FindUI("UI_R_Miss").uiObject as UIText;
+        UIText rfail = UIController.Instance.FindUI("UI_R_Fail").uiObject as UIText;
 
         rscore.SetText(Score.Instance.data.score.ToString());
-        rgreat.SetText(Score.Instance.data.great.ToString());
+        rkool.SetText(Score.Instance.data.kool.ToString());
+        rcool.SetText(Score.Instance.data.cool.ToString());
         rgood.SetText(Score.Instance.data.good.ToString());
         rmiss.SetText(Score.Instance.data.miss.ToString());
+        rfail.SetText(Score.Instance.data.fail.ToString());
 
         // # Once Imeage processing is done, uncomment this
         // UIImage rBG = UIController.Instance.FindUI("UI_R_BG").uiObject as UIImage;
