@@ -27,7 +27,7 @@ public class NoteShort : NoteObject
         while (true)
         {
             transform.position += Vector3.down * speed * Time.deltaTime;
-            if (transform.position.y < -3f)
+            if (transform.position.y < -3.0f)
                 life = false;
             yield return null;
         }
@@ -76,7 +76,7 @@ public class NoteLong : NoteObject
         {
             transform.position += Vector3.down * speed * Time.deltaTime;
 
-            if (tail.transform.position.y < -3f)
+            if (tail.transform.position.y < -3.0f)
                 life = false;
 
             yield return null;
@@ -98,8 +98,8 @@ public class NoteLong : NoteObject
 
     public override void Interpolate(float curruntTime, float interval)
     {
-        float yHead = (note.time - curruntTime) * interval - 3.5f;
-        float yTail = (note.tail - curruntTime) * interval - 3.5f;
+        float yHead = (note.time - curruntTime) * interval - 3.0f;
+        float yTail = (note.tail - curruntTime) * interval - 3.0f;
 
         transform.position = new Vector3(transform.position.x, yHead, transform.position.z);
         head.transform.position = new Vector3(head.transform.position.x, yHead, head.transform.position.z);

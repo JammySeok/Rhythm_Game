@@ -13,7 +13,7 @@ public class Sync : MonoBehaviour
     Coroutine coPopup;
 
     float moveAmount = 0.025f;
-    float initialY = -3f;    // 초기 y 위치 기준
+    float initialY = -3.0f;    // 초기 y 위치 기준
 
     void Start()
     {

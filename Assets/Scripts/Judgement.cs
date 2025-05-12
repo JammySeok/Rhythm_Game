@@ -14,7 +14,7 @@ public enum JudgeType
 
 public class Judgement : MonoBehaviour
 {
-    readonly int fail = 800;
+    readonly int fail = 600;
     readonly int miss = 300;
     readonly int good = 200;
     readonly int cool = 150;
