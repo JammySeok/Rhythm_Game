@@ -53,6 +53,15 @@ public class GameManager : MonoBehaviour
     }
     CanvasGroup sfxFade;
 
+    [System.Serializable]
+    public struct HighScore
+    {
+        public int score;
+        public string title;
+        public string date;
+    }
+    public List<HighScore> highScores = new List<HighScore>();
+
     void Awake()
     {
         if (instance == null)
@@ -61,6 +70,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        LoadHighScores();
         StartCoroutine(IEInit());
     }
 
@@ -222,6 +232,36 @@ public class GameManager : MonoBehaviour
         rmiss.SetText(Score.Instance.data.miss.ToString());
         rfail.SetText(Score.Instance.data.fail.ToString());
 
+        // 하이스코어 갱신 로직을 UI 표시 전으로 이동
+        HighScore newScore = new HighScore();
+        newScore.score = Score.Instance.data.score;
+        newScore.title = title;
+        newScore.date = DateTime.Now.ToString("yyyy-MM-dd");
+        
+        UpdateHighScores(newScore);
+
+        // 수정된 랭크 표시 방식
+        List<UIText> rankTexts = new List<UIText>
+        {
+            UIController.Instance.FindUI("UI_R_Rank1").uiObject as UIText,
+            UIController.Instance.FindUI("UI_R_Rank2").uiObject as UIText,
+            UIController.Instance.FindUI("UI_R_Rank3").uiObject as UIText,
+            UIController.Instance.FindUI("UI_R_Rank4").uiObject as UIText,
+            UIController.Instance.FindUI("UI_R_Rank5").uiObject as UIText
+        };
+
+        for (int i = 0; i < 5; i++)
+        {
+            if (i < highScores.Count)
+            {
+                rankTexts[i].SetText($"{i+1}. {highScores[i].score}");
+            }
+            else
+            {
+                rankTexts[i].SetText($"{i+1}. ---");
+            }
+        }
+
         // # Once Imeage processing is done, uncomment this
         // UIImage rBG = UIController.Instance.FindUI("UI_R_BG").uiObject as UIImage;
         // rBG.SetSprite(sheets[title].img);
@@ -234,7 +274,54 @@ public class GameManager : MonoBehaviour
 
         yield return new WaitForSeconds(5f);
 
+        UpdateRankUI();
+
         Select();
+    }
+
+    void UpdateHighScores(HighScore newScore)
+    {
+        highScores.Add(newScore);
+        highScores = highScores
+            .OrderByDescending(s => s.score)
+            .Take(5)
+            .ToList();
+            
+        SaveHighScores();
+    }
+
+    void UpdateRankUI()
+    {
+        for(int i=0; i<5; i++)
+        {
+            string uiName = $"UI_R_Rank{i+1}";
+            UIText rankText = UIController.Instance.FindUI(uiName).uiObject as UIText;
+            
+            if(i < highScores.Count)
+            {
+                rankText.SetText($"{i+1}. {highScores[i].score}");
+            }
+            else
+            {
+                rankText.SetText($"{i+1}. ---");
+            }
+        }
+    }
+
+    void LoadHighScores()
+    {
+        string json = PlayerPrefs.GetString("HighScores");
+        if(!string.IsNullOrEmpty(json))
+        {
+            highScores = JsonUtility.FromJson<List<HighScore>>(json);
+        }
+    }
+
+    void SaveHighScores()
+    {
+        string json = JsonUtility.ToJson(highScores);
+        PlayerPrefs.SetString("HighScores", json);
+        PlayerPrefs.Save();
     }
 
     public void UpdateJudgeUI()
