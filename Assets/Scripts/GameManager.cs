@@ -54,13 +54,20 @@ public class GameManager : MonoBehaviour
     CanvasGroup sfxFade;
 
     [System.Serializable]
+    public class SongHighScore
+    {
+        public string songTitle;
+        public List<HighScore> scores = new List<HighScore>();
+    }
+
+    [System.Serializable]
     public struct HighScore
     {
         public int score;
-        public string title;
         public string date;
     }
-    public List<HighScore> highScores = new List<HighScore>();
+
+    public List<SongHighScore> songHighScores = new List<SongHighScore>();
 
     void Awake()
     {
@@ -235,32 +242,12 @@ public class GameManager : MonoBehaviour
         // 하이스코어 갱신 로직을 UI 표시 전으로 이동
         HighScore newScore = new HighScore();
         newScore.score = Score.Instance.data.score;
-        newScore.title = title;
         newScore.date = DateTime.Now.ToString("yyyy-MM-dd");
         
         UpdateHighScores(newScore);
 
         // 수정된 랭크 표시 방식
-        List<UIText> rankTexts = new List<UIText>
-        {
-            UIController.Instance.FindUI("UI_R_Rank1").uiObject as UIText,
-            UIController.Instance.FindUI("UI_R_Rank2").uiObject as UIText,
-            UIController.Instance.FindUI("UI_R_Rank3").uiObject as UIText,
-            UIController.Instance.FindUI("UI_R_Rank4").uiObject as UIText,
-            UIController.Instance.FindUI("UI_R_Rank5").uiObject as UIText
-        };
-
-        for (int i = 0; i < 5; i++)
-        {
-            if (i < highScores.Count)
-            {
-                rankTexts[i].SetText($"{i+1}. {highScores[i].score}");
-            }
-            else
-            {
-                rankTexts[i].SetText($"{i+1}. ---");
-            }
-        }
+        UpdateRankUI();
 
         // # Once Imeage processing is done, uncomment this
         // UIImage rBG = UIController.Instance.FindUI("UI_R_BG").uiObject as UIImage;
@@ -281,25 +268,38 @@ public class GameManager : MonoBehaviour
 
     void UpdateHighScores(HighScore newScore)
     {
-        highScores.Add(newScore);
-        highScores = highScores
+        // 현재 곡의 랭킹 찾기
+        var songScore = songHighScores.FirstOrDefault(s => s.songTitle == title);
+        
+        if(songScore == null)
+        {
+            songScore = new SongHighScore();
+            songScore.songTitle = title;
+            songHighScores.Add(songScore);
+        }
+
+        // 새 점수 추가 및 정렬
+        songScore.scores.Add(newScore);
+        songScore.scores = songScore.scores
             .OrderByDescending(s => s.score)
             .Take(5)
             .ToList();
-            
+
         SaveHighScores();
     }
 
     void UpdateRankUI()
     {
+        var currentSongScores = songHighScores.FirstOrDefault(s => s.songTitle == title)?.scores;
+
         for(int i=0; i<5; i++)
         {
             string uiName = $"UI_R_Rank{i+1}";
             UIText rankText = UIController.Instance.FindUI(uiName).uiObject as UIText;
             
-            if(i < highScores.Count)
+            if(currentSongScores != null && i < currentSongScores.Count)
             {
-                rankText.SetText($"{i+1}. {highScores[i].score}");
+                rankText.SetText($"{i+1}. {currentSongScores[i].score}");
             }
             else
             {
@@ -310,17 +310,17 @@ public class GameManager : MonoBehaviour
 
     void LoadHighScores()
     {
-        string json = PlayerPrefs.GetString("HighScores");
+        string json = PlayerPrefs.GetString("SongHighScores");
         if(!string.IsNullOrEmpty(json))
         {
-            highScores = JsonUtility.FromJson<List<HighScore>>(json);
+            songHighScores = JsonUtility.FromJson<List<SongHighScore>>(json);
         }
     }
 
     void SaveHighScores()
     {
-        string json = JsonUtility.ToJson(highScores);
-        PlayerPrefs.SetString("HighScores", json);
+        string json = JsonUtility.ToJson(songHighScores);
+        PlayerPrefs.SetString("SongHighScores", json);
         PlayerPrefs.Save();
     }
 
